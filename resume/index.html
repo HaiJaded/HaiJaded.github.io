@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<title>Resume - Bobby Zuch!</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<link rel="stylesheet" href="../universal.css" type="text/css">
+<script src="../java_half.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+#flexcontent {
+	flex-direction: column;
+}
+
+#introtext {
+	margin-top: 40px;
+	width: 100%;
+	text-align: center;
+}
+
+#outercontactblock {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.contactblock {
+	display: flex;
+	margin: 10px;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+}
+
+.contactblock img {
+	margin-right: 10px;
+	object-fit: contain;
+}
+
+iframe {
+	border-radius: 15px;
+	border: none;
+	z-index: 1;
+	max-height: 191vw;
+}
+
+.contactblock h1 {
+	font-size: 18pt;
+}
+
+h1 { margin: 0; font-size: 24pt; }
+
+body { background-color: var(--raisin-black); }
+
+@media (max-width: 740px) {
+	/*#flexcontent { zoom: 0.66; }*/
+	#introtext { margin-top: calc(170px - 13vw); }
+}
+</style>
+</head>
+<body>
+
+<header id="header">
+	<div id="hback"><img alt="" src="../corner_new.svg"></div>
+	<a href=".."><div id="hlogo"><img alt="Bobby Zuch!" src="../logo.png"></div></a>
+	<div id="htext"><a href=".." id="htext1">HOME</a><a href="javascript:;" id="htext2" onclick="about()">ABOUT</a></div>
+	</div>
+</header>
+
+<div id="corecontent">
+<div id="flexcontent">
+	<div id="introtext">
+		<h1>Contact Me</h1>
+		<p>Feel free to get in touch with me. I'll be glad to hear from you!</p>
+	</div>
+	<div id="gallery" style="margin-bottom: 0px;">
+	<span id="outercontactblock">
+		<span class="contactblock">
+		<a href="mailto:bobbyzuch1@gmail.com" target="_blank"><img alt="Mail icon" src="../contact_mail.png"></a>
+		<h1><a href="mailto:bobbyzuch1@gmail.com" target="_blank">bobbyzuch1@gmail.com</a></h1>
+		</span>
+		
+		<span class="contactblock">
+		<a href="https://www.linkedin.com/in/bobbyzuch/" target="_blank"><img alt="Linkedin icon" src="../contact_linkedin.png"></a>
+		<h1><a href="https://www.linkedin.com/in/bobbyzuch/" target="_blank">linkedin.com/in/bobbyzuch</a></h1>
+		</span>
+	</span>
+	</div>
+	<div id="introtext" style="margin-top: 15px;">
+	<hr style="max-width: 95%; width: 800px; margin-bottom: 40px;">
+		<h1>My Resume</h1>
+		<span id="outercontactblock">
+		<span class="contactblock">
+			<a href="../resume.pdf" target="_blank" download="BobbyZuch_Resume_2023-03-28.pdf"><img alt="PDF icon" src="../contact_pdf.png"></a>
+			<h1><a href="../resume.pdf" target="_blank" download="BobbyZuch_Resume_2023-03-28.pdf">PDF Version Here</a></h1>
+		</span>
+		</span>
+		<p>PNG version below:</p>
+	</div>
+	<div id="gallery" style="width: unset; max-width: 90%;">
+		<div style="display: flex; justify-content: center; width: 100%;">
+			<img src="../resume.png" width="100%" style="max-width: 1409px;" alt="BobbyZuch_Resume_2023-03-28.png">
+			<!--iframe src="../BobbyZuch_Resume_22-8-23.pdf" width="100%" height="1055px" style="max-width: 95%"></iframe-->
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- ABOUT PORTION -->
+
+<div id="backborder">
+<div id="infobox">
+	<div class="half" id="sideB">
+		<div class="sectionlight">
+			<div id="imgdisplay"><img alt="" id="image"></div>
+			<p id="date"><img alt="" src="../clock.svg"></p>
+			<p id="client"></p>
+		</div>
+	</div>
+	<div class="half" id="sideA">
+		<div class="section">
+			<p id="title"></p>
+			<h2 id="category">Bobby Zuch!</h2>
+			<div id="connection"></div>
+		</div>
+		<div class="section" id="unified"><br>
+			<p id="desc"></p><div class="slants" aria-hidden="true"><p>////////////////////////////////////////////////////////////////////////////////////</p></div>
+			<p id="diff"></p><div class="slants" aria-hidden="true"><p>////////////////////////////////////////////////////////////////////////////////////</p></div>
+			<p id="software"></p><div class="slants" aria-hidden="true"><p>////////////////////////////////////////////////////////////////////////////////////</p></div>
+			<p id="skills"></p><br>
+		</div>
+	</div>
+</div>
+<div id="closeXholder">
+	<button class="closeX" id="closeX" onclick="closeit()" style="display: initial;"><h1>X</h1></button>
+</div>
+</div>
+
+<div id="grayback" onclick="closeit()">
+	<div id="closeX2" onclick="closeit()"><h1>X</h1></div>
+</div>
+
+</body>
+</html>

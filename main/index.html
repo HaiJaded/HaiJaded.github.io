@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<title>Bea's Kitchen!</title>
+
+<meta property="og:title" content="Bobby Zuch!" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Welcome to my portfolio. Take a look inside!" />
+<meta property="og:url" content="https://zuchr.github.io/" />
+<meta property="og:image" content="https://zuchr.github.io/logo.png" />
+<meta name="theme-color" content="#1DCC6D" />
+<!-- Include this to make the og:image larger -->
+<!--meta name="twitter:card" content="summary_large_image" /-->
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<link rel="stylesheet" href="../universal.css" type="text/css">
+<script src="../main.js"></script>
+<script src="../java_half.js"></script>
+<script src="../options.js"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+	
+	.thisgetschanged {
+        animation-duration: 0s !important;
+        transition-duration: 0s !important;
+		transition-delay: 0s !important;
+    }
+	
+	.yearlydivider {
+		position: relative;
+		display: block;
+		padding: 0 30px;
+		margin-top: 20px;
+		width: calc(90% - 60px);
+		font-family: 'HYWenHei';
+		color: hsl(180deg 4% 34%);
+		font-size: 42px;
+		max-height: 51px; /* For while things are loading. */
+		user-select: none;
+	}
+
+	.yearlydivider:before {
+		content: '';
+		position: absolute;
+		top: 10%;
+		left: 0;
+		width: 100%;
+		height: 80%;
+		background-color: var(--raisin-black);
+		transform-origin: 0 50%;
+		transform: skew(-45deg);
+		z-index: -1;
+	}
+	
+	#blanktop {
+		display: flex;
+		justify-content: flex-end;
+		background-color: var(--davys-gray);
+		width: 100%;
+		height: fit-content;
+		box-shadow: 0px 10px 10px var(--raisin-black);
+		flex-direction: column;
+		align-items: center;
+		padding-top: calc(var(--top-margin) - 50px);
+	}
+	
+	#filters, #toprow {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 5px;
+		max-width: 555px; /* Formerly 600px. */
+	}
+	
+	.filter {
+		background-color: var(--emerald-green);
+		padding: 2px 5px;
+		border-radius: 25px;
+		cursor: pointer;
+		/*height: 20px; No longer needed with buttons. */
+		color: var(--raisin-black);
+		font-family: 'HYWenHei';
+		min-width: 30px;
+		text-align: center;
+	}
+	
+	.filter:hover, .filter:focus { filter: brightness(1.1); }
+	.filter:active { filter: brightness(0.8); }
+	
+	#searchbar { 
+		border: unset;
+		margin: 0;
+		top: -1px;
+		left: 2px;
+		border-radius: 25px;
+		padding: 1px 0px 1px 7px;
+		position: relative;
+		height: 14px;
+		background-color: #0005;
+		color: white;
+		font-family: 'HYWenHei';
+	}
+	
+	::placeholder { color: white; } /* For search text. */
+	
+	#infobutton {
+		position: absolute;
+		background-color: var(--white);
+		border-radius: 100%;
+		padding: 3px;
+		margin: 1px 0 0 8px;
+		width: 12px;
+		height: 12px;
+	}
+	
+	.filter:has(#infobutton:hover) > #infoP, .filter:has(#infobutton:focus) > #infoP { display: block; }
+	.filter:has(#infobutton:hover), .filter:has(#infobutton:focus) { filter: unset; }
+	
+	#infoP {
+		position: absolute;
+		margin: -40px 200px 0;
+		width: 240px;
+		text-align: left;
+		background-color: var(--white);
+		color: var(--raisin-black);
+		border-radius: 17px;
+		padding: 5px 10px;
+		box-shadow: -1px 1px 10px var(--raisin-black);
+		display: none;
+		z-index: 20;
+	}
+	
+	#toprow {
+		width: 100%;
+		padding-bottom: 10px;
+		margin-bottom: 5px;
+		border-bottom: solid var(--raisin-black) 4px;
+	}
+	
+	.featuredsection > h1 { width: 505px; }
+	
+	@media (max-width: 1099px) {
+		#controlbuttons > h2 { opacity: 50%; }
+	}
+	@media (max-width: 925px) {
+		#infoP { margin: 10px -35px 0; }
+	}
+	@media (max-width: 554px) {
+		.featuredsection > h1 { width: 370px; }
+	}
+	@media (max-width: 475px) and (min-width: 398px) {
+		#infoP { margin: 10px -65px 0; }
+	}
+
+</style>
+</head>
+<body onload="loaddata()", onhashchange="loadfromhash()">
+
+<header id="header">
+	<div id="hback"><img alt="" src="../corner_new.svg"></div>
+	<a href=".."><div id="hlogo"><img alt="Bobby Zuch!" src="../logo.png"></div></a>
+	<div id="htext"><a href=".." id="htext1">HOME</a><a href="javascript:;" id="htext2" onclick="about()">ABOUT</a></div>
+	</div>
+</header>
+
+<div id="controlbuttons">
+	<h2>Options</h2>
+	
+	<button id="optionbtn1" onclick="changesetting(1)" title="Toggle yearly dividers (Not available on Featured Works!)">
+		<img src="../homesvg/settings_yearly.svg" alt="Yearly divider icon">
+		<h2>Toggle yearly dividers</h2>
+	</button>
+	<button id="optionbtn2" onclick="changesetting(2)" title="Toggle reduced motion">
+		<img src="../homesvg/settings_reducedmotion2.svg" alt="Reduced motion icon">
+		<h2>Toggle reduced motion</h2>
+	</button>
+	<!--button id="optionbtn2" onclick="changesetting(2)" title="Toggle yearly dividers" alt="Toggle yearly dividers"></button>
+	<button id="optionbtn3" onclick="changesetting(3)" title="Toggle yearly dividers" alt="Toggle yearly dividers"></button-->
+</div>
+
+<div id="blanktop">
+<div class="featuredsection lessfancy">
+<br><h1>Main Gallery</h1>
+<p>Use the filters below to sort through my works.<!--Please use the filters below to find the content you're interested in seeing.--></p><br>
+</div>
+
+<div id="filters">
+	<div id="toprow">
+		<button class="filter" id="All" onclick="filter(this)">All Content</button>
+		<button class="filter" id="Featured" onclick="filter(this)">Featured Works</button>
+		<button class="filter" style="margin-right: 21px;" tabindex="-1">
+			<input type="text" value="" id="searchbar" placeholder="Search for a phrase..." onchange="filter(this)">
+			<label for="searchbar" style="display: none;">Search</label>
+			<img src="../search.svg" height="16px" style="margin: 1px 2px -1px" onclick="filter(this.previousElementSibling)" alt="Search" title="Search">
+			<img src="../info.svg" id="infobutton" tabindex="0" alt="i">
+			<p id="infoP">Use commas to widen your search (as an 'OR' operator).<br>Category tags use different spacing, i.e.: "3D-Modeling+Texturing".</p>
+		</button>
+	</div>
+	<button class="filter" id="Graphics" onclick="filter(this)">Graphics</button>
+	<button class="filter" id="Web-Designs" onclick="filter(this)">Web Designs</button>
+	<button class="filter" id="Games+Demos" onclick="filter(this)">Games & Demos</button>
+	<button class="filter" id="Article-Designs" onclick="filter(this)">Article Designs</button>
+	<button class="filter" id="Pixel-Art" onclick="filter(this)">Pixel Art</button>
+	<button class="filter" id="2D-Animation" onclick="filter(this)">2D Animation</button>
+	<button class="filter" id="3D-Animation" onclick="filter(this)">3D Animation</button>
+	<button class="filter" id="Drawings" onclick="filter(this)">Drawings</button>
+	<button class="filter" id="Digital-Music" onclick="filter(this)">Digital Music</button>
+	<button class="filter" id="3D-Modeling+Texturing" onclick="filter(this)">3D Modeling & Texturing</button>
+</div>
+
+<br>
+</div>
+
+<!-- ABOUT PORTION -->
+
+<div id="backborder">
+<dialog id="infobox">
+	<span class="starcorners"></span>
+	<span class="starcorners"></span>
+	<img id="bigimg" src="https://i.imgur.com/oZ4G3hm.jpg">
+	<img class="glam" role="decorative" src="../glam.jpg">
+	<h3 id="bigname">smoked turkey bowl & dried seaweed flakes</h3>
+</dialog>
+<div id="closeXholder">
+	<button class="closeX" id="leftbutton" onclick="nextprev(0)"><h1><</h1></button>
+	<button class="closeX" id="rightbutton" onclick="nextprev(1)"><h1>></h1></button>
+	<button class="closeX" id="closeX" onclick="closeit()" style="display: initial;"><h1>X</h1></button>
+</div>
+</div>
+
+<div id="grayback" onclick="closeit()">
+	<div id="closeX2" onclick="closeit()"><h1>X</h1></div>
+</div>
+
+<div id="flexbg">
+	<div id="leftwall"></div>
+	<div id="middle"></div>
+</div>
+<div id="flexcontent">
+	<div id="leftwall"></div>
+	<div id="gallery">
+		<h1 id="getridofme">Loading page content...</h1>
+		<noscript><h1 style="text-align: center">This page needs Javascript<br>enabled to function properly.</h1></noscript>
+		<a href="javascript:;" class="itemtile">
+			<img src="https://i.imgur.com/oZ4G3hm.jpg">
+			<img class="glam" role="decorative" src="../glam.jpg">
+			<h3>smoked turkey bowl & dried seaweed flakes</h3>
+		</a>
+
+	</div>
+</div>
+	
+</body>
+
+<script>
+
+let frame = document.getElementById("iframeA");
+frame.onload = function() { document.getElementById("getridofme2").style.display = "none"; }
+
+let filters = document.getElementsByClassName("filter");
+let searchstring = location.hash.slice(location.hash.indexOf('?')).substring(1);
+// ^ This removes the hash before the '?' in the address bar. Slashes the '?'. I think???
+let itsasearch = 0;
+let anysearches = 0;
+if ( searchstring !== "" ) { anysearches = 1; } //IMPORTANT!!! ACTUALLY WORKS
+let found = 0; // Becomes 1 when the search matches a button.
+
+function filter(item) {
+	let searchquery;
+	for ( let i = 0; i < filters.length; i++ ) {
+		filters[i].style.backgroundColor = "";
+	}
+	
+	if ( item.innerHTML !== "" ) { //If it's one of the buttons.
+		searchquery = item.id;
+	}
+	else {
+		searchquery = item.value;
+		console.log(item.value);
+		if ( anysearches == 1 ) { item.parentElement.style.backgroundColor = "var(--pacific-blue)"; }
+	}
+	
+	//searchquery = item.id;
+	//item.style.backgroundColor = "var(--pacific-blue)";
+
+	anysearches = 1;
+	searchstring = searchquery.replace(/&amp;/g, '&');
+	getfromsearch();
+}
+
+function getfromsearch() {
+	if ( anysearches == 1 ) {
+		if ( location.hash = hashname + '?' + searchstring ) { location.hash = hashname + '?' + searchstring; }
+		// ^ Prevents an infinite loop.
+		
+		// Cache the search bar text without leaving it out in the open.
+		//let searchbartext = filters[2].children[0].value;
+		//let cachedsearchbartext = searchbartext;
+		
+		/* Fill the search bar with the content of the
+		search, unless it belongs to one of the buttons: */
+		//Search bar = filters[2].
+		found = 0;
+		//if ( filters[2].children[0].value === '' ) { //Blocking this clears searchbar.
+			for ( let i = 0; i < filters.length; i++ ) {
+				if ( filters[2].children[0].value === filters[i].id ) {
+					found = 1;
+					filters[2].children[0].value = '';
+					filters[i].style.backgroundColor = "var(--pacific-blue)";
+					//filters[2].children[0].value = cachedsearchbartext;
+					break;
+				}
+			if ( found == 0 )
+				{ filters[2].children[0].value = searchstring; }
+			}
+		//}
+	}
+}
+
+</script>
+</html>

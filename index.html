@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Main Menu - Bobby Zuch!</title>
+
+<meta property="og:title" content="Bobby Zuch!" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Welcome to my portfolio. Take a look inside!" />
+<meta property="og:url" content="https://zuchr.github.io/" />
+<meta property="og:image" content="https://zuchr.github.io/logo.png" />
+<meta name="theme-color" content="#1DCC6D" />
+<!-- Include this to make the og:image larger -->
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- For Google Crawling -->
+<meta name="google-site-verification" content="4gtsqJeMUnKcdxKzzEUBSkJ_n_Dr8NXFUIlSvpDsFK4" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="universal.css?v=1.3" type="text/css">
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: var(--raisin-black);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+h1 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	transition: text-shadow .05s;
+}
+
+#menuwrapper, #menuwrapper2 {
+	border-radius: 25px;
+	overflow: hidden;
+	width: 900px;
+	height: 515px;
+	
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 10px;
+	
+	position: relative;
+}
+
+#menuwrapper2 {
+	width: 100%;
+	height: 100%;
+	transition: transform .25s;
+}
+
+.zoommain {
+	/* The original:
+	transform: scale(5);
+	transform-origin: 29.2% 17.1%;
+	*/
+	
+	/* For a more comfy size: */
+	transform: scale(4);
+	transform-origin: 27.7% 15%;
+	
+	/* For centering on the box instead:
+	transform: scale(11);
+	transform-origin: 36% 19.1%;
+	*/
+}
+
+/* I know I have the ID and class roles reversed here,
+but some child animation stuff wouldn't work otherwise. */
+#container {
+	position: relative;
+	overflow: hidden;
+	transition: filter .15s;
+	flex-grow: 1;
+}
+.choice1 { width: 600px; height: 300px; perspective: 1000px; perspective-origin: right; }
+.choice2 { width: 600px; height: 200px; }
+.choice3, .choice4, .choice5 { width: 290px; height: 150px; }
+.choice3 > .bgcolor, .choice4 > .bgcolor, .choice5 > .bgcolor { filter: brightness(.75) contrast(.9); }
+.choice3 h1, .choice4 h1, .choice5 h1 { font-size: 24pt; }
+
+#bg1 {
+	animation: galleryscroll 1s linear paused infinite;
+    height: 150%;
+    transform-origin: 0% 0%;
+	margin-left: 8%;
+}
+
+#bg2 {
+	animation: detailedscroll 5s linear paused infinite;
+    transform-origin: top;
+}
+
+#bg3a, #bg3b {
+    transform-origin: center;
+	width: 110%;
+	min-width: 600px;
+}
+
+#bg3a {
+	animation: resumescrollA .5s linear paused infinite;
+}
+
+#bg3b {
+	animation: resumescrollB .5s linear paused infinite reverse;
+	animation-direction: reverse;
+    top: unset;
+	bottom: 0;
+}
+
+.bg {
+	width: 100%;
+	position: absolute;
+	top: 0;
+}
+
+.bgcolor {
+	filter: brightness(.75) contrast(1.25);
+	transition: filter .25s;
+	animation: quickglow 1s 0.5s;
+}
+
+.backgroundtextlabel, .textlabel {
+	margin: auto;
+	color: white;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	text-shadow: 0 0 5px black;
+	transition: text-shadow 0.15s;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 10px;
+	
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	
+	overflow: hidden;
+}
+
+.backgroundtextlabel { opacity: 0.5; }
+
+.backgroundtextlabel > *, .textlabel > * {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.icon { width: 30%; max-height: 50%; filter: drop-shadow(0 0 5px black); transition: filter .03s; }
+
+#container:hover *, #container:focus-within * { animation-play-state: running; }
+#container:hover .bgcolor, #container:focus-within .bgcolor { filter: brightness(1) contrast(0.9); }
+
+#container:hover h1, #container:hover .icon, #container:focus-within h1, #container:focus-within .icon { transform: translate(-2px, -2px); }
+#container:hover .backgroundtextlabel > h1, #container:focus-within .backgroundtextlabel > h1 {
+	text-shadow:
+		-2px -2px 0 #000,
+		-1px 1px 0 #000,
+		-2px 2px 0 #000,
+		-1px 3px 0 #000,
+		0px 4px 0 #000,
+		1px 5px 0 #000,
+		
+		2px -2px 0 #000,
+		1px -1px 0 #000,
+		2px 0px 0 #000,
+		3px 1px 0 #000,
+		4px 2px 0 #000,
+		
+		1px 1px 0 #000,
+		2px 2px 0 #000,
+		3px 3px 0 #000,
+		4px 4px 0 #000,
+		5px 5px 0 #000,
+		
+		3px -1px 0 #000,
+		4px 0px 0 #000,
+		5px 1px 0 #000,
+		5px 2px 0 #000,
+		5px 3px 0 #000,
+		5px 4px 0 #000
+		;
+}
+#container:hover > .backgroundtextlabel > .icon, #container:focus-within > .backgroundtextlabel > .icon {
+	filter:
+		drop-shadow(-1px -1px 0 #000)
+		drop-shadow(-1px 1px 0 #000)
+		drop-shadow(-1px 3px 0 #000)
+		drop-shadow(3px 1px 0 #000)
+		drop-shadow(5px 2px 0 #000)
+		;
+}
+
+#container:active h1, #container:active .icon { transform: none; }
+#container:active .backgroundtextlabel > h1 { text-shadow: 2px 2px 0 #000; }
+#container:active > .backgroundtextlabel > .icon { filter: drop-shadow(2px 2px 0 #000); }
+
+hr {
+	display: none;
+	height: 45%;
+	position: absolute;
+	left: 41.5%;
+	width: 0.5%;
+	background-color: var(--raisin-black);
+	opacity: 50%;
+	border: none;
+	border-radius: 25px;
+}
+
+#outertop {
+	padding: 10px 0px;
+	width: 100%;
+	height: fit-content;
+	overflow-x: hidden;
+}
+
+#gradient {
+	background: linear-gradient(90deg, var(--emerald-green) 0%, var(--pacific-blue) 33.3%, var(--emerald-green) 66.6%, var(--pacific-blue) 100%);
+	background-size: 300%;
+	width: 100%;
+	height: fit-content;
+	transform-origin: left;
+	animation: gradientmovement 3.5s linear infinite;
+	
+	border: solid 12px var(--davys-gray);
+}
+
+#thetop {
+	margin: 10px 0px;
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--davys-gray);
+}
+
+#logo {
+	width: 25vw;
+	max-width: 250px;
+	transform-origin: center center;
+	transform: scale(1.27);
+	margin-left: 3%;
+}
+
+#innerbanner {
+	height: 90%;
+	background-color: var(--raisin-black);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px 0px;
+	width: 100%;
+	gap: 5%;
+}
+
+#introtext {
+	font-size: 12pt;
+	max-width: 510px;
+}
+
+#homebottomtext {
+	opacity: 50%;
+	font-size: 11pt;
+}
+
+h3 {
+	width: 95%;
+	max-width: 720px;
+	text-align: center;
+	color: white;
+	font-family: 'HelveticaRB';
+	font-size: 18pt;
+	margin-bottom: 42px;
+}
+
+/* ANIMATIONS */
+
+@keyframes gradientmovement {
+	from { background-position: 0%; }
+	to { background-position: 100%; }
+}
+
+@keyframes galleryscroll {
+	from { transform: rotateX(42deg) translateY(-2.25%); }
+	to { transform: rotateX(42deg) translateY(-17.75%); }
+}
+
+@keyframes detailedscroll {
+	from { transform: translateY(0%); }
+	to { transform: translateY(-68%); }
+}
+
+@keyframes resumescrollA {
+	from { transform: translateX(0%) translateY(-5%); }
+	to { transform: translateX(-3.2%) translateY(-5%); }
+}
+
+@keyframes resumescrollB {
+	from { transform: translateX(0%) translateY(5%); }
+	to { transform: translateX(-3.2%) translateY(5%); }
+}
+
+@keyframes quickglow {
+	0% { }
+	50% { filter: brightness(.9) contrast(0.9); }
+	100% { }
+}
+
+
+/* RESPONSIVITY */
+
+@media (max-width: 1000px) { #thetop { margin: 1vw 0px; } }
+
+@media (max-width: 899px) {
+	#menuwrapper, #menuwrapper2 {
+		width: unset;
+		height: unset;
+		max-width: 770px;
+	}
+	
+	#container {
+		width: 100vw;
+		max-width: 600px;
+	}
+	
+	.backgroundtextlabel, .textlabel {
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+	}
+	
+	.backgroundtextlabel > h1, .textlabel > h1 {
+		width: 53%;
+		text-align: left;
+		margin: auto;
+		margin-left: 0;
+	}
+	
+	.icon {
+		margin-right: 0;
+		flex-grow: 1;
+	}
+	
+	#innerbanner { margin: 2.2vw 0; }
+	
+	.choice1 { height: 35vmin; max-height: 210px; perspective: 135vmin; }
+	.choice2 { height: 28vmin; max-height: 168px; }
+	.choice3, .choice4, .choice5 { height: 20vmin; max-height: 120px; }
+	
+	.choice1 h1 { font-size: 45px; }
+	
+	#bg1 { height: 180%; }
+	
+	/*hr { display: block; }*/
+
+	#bg3a, #bg3b {
+		min-width: unset;
+	}
+	
+	#introtext {
+		font-size: 1.75vw;
+		max-width: 56%;
+	}
+	
+	#homebottomtext {
+		font-size: 1.75vw;
+	}
+
+	@keyframes resumescrollA {
+		from { transform: translateX(0%) translateY(-60%); }
+		to { transform: translateX(-3.2%) translateY(-60%); }
+	}
+
+	@keyframes resumescrollB {
+		from { transform: translateX(0%) translateY(60%); }
+		to { transform: translateX(-3.2%) translateY(60%); }
+	}
+}
+
+@media (max-width: 600px) {
+	.choice1 h1 { font-size: 7.5vw; }
+	.choice2 h1 { font-size: 6.5vw; }
+	.choice3 h1, .choice4 h1, .choice5 h1 { font-size: 5.25vw; }
+	h3 { font-size: 3.15vw; }
+}
+
+#warntext {
+	background: #F7A51C55;
+	max-width: 80%;
+	border: solid 3px var(--orange-accent);
+	border-radius: 100px;
+	padding: 15px;
+	margin: 9px auto;
+}
+
+</style>
+</head>
+<body>
+
+<header id="gradient" style="margin-bottom: 36px;">
+	<div id="thetop">
+		<div id="innerbanner">
+			<img src="./logo_bg.png" id="logo" alt="Logo: 'Bobby Zuch!'">
+			<p id="introtext">That's my name! Welcome to my digital portfolio.
+			<br><br>
+			After trying all sorts of site builders and templates, I decided to make my website all by myself. I coded everything here by hand using only HTML, CSS, and Javascript. Please, have a look around!</p>
+		</div>
+	</div>
+</header>
+
+<noscript><h3>Hey, this site isn't gonna work so great without Javascript! You may want to switch to a different browser if you can.</h3></noscript>
+
+<div id="menuwrapper" style="margin-bottom: 18px;">
+<div id="menuwrapper2">
+
+	<div id="container" class="choice1">
+		<div class="textlabel bgcolor" style="background-color: var(--emerald-green)"></div>
+		<img id="bg1" class="bg" src="./homesvg/gallerysides.svg" alt="">
+		
+		<div class="backgroundtextlabel" aria-hidden="true">
+			<img class="icon" src="./homesvg/icon_gallery.svg" alt="">
+			<hr>
+			<h1>Main Gallery</h1>
+		</div>
+		
+		<a href="./main/#?Featured" class="textlabel">
+			<img class="icon" src="./homesvg/icon_gallery.svg" alt="Icon of the infobox seen in the Main Gallery.">
+			<hr>
+			<h1>Main Gallery</h1></a>
+	</div>
+
+	<div id="container" class="choice2">
+	<div class="textlabel bgcolor" style="background-color: var(--pacific-blue)"></div>
+		<img id="bg2" class="bg" src="./homesvg/detailed_page.svg" alt="">
+		
+		<div class="backgroundtextlabel" aria-hidden="true">
+			<img class="icon" src="./homesvg/icon_detailed.svg" alt="">
+			<hr>
+			<h1>Expanded Projects</h1>
+		</div>
+		
+		<a href="./expanded/" class="textlabel">
+			<img class="icon" src="./homesvg/icon_detailed.svg" alt="Icon of the preview box seen in the Expanded Projects page.">
+			<hr>
+			<h1>Expanded Projects</h1></a>
+	</div>
+
+	<div id="container" class="choice3">
+	<div class="textlabel bgcolor" style="background-color: var(--davys-gray)"></div>
+		<img id="bg3a" class="bg" src="./homesvg/resume_sides.svg" alt="">
+		<img id="bg3b" class="bg" src="./homesvg/resume_sides.svg" alt="">
+		
+		<div class="backgroundtextlabel" aria-hidden="true">
+			<img class="icon" src="./homesvg/icon_resume.svg" alt="">
+			<hr>
+			<h1>Resume / Contact</h1>
+		</div>
+		
+		<a href="./resume/" class="textlabel">
+			<img class="icon" src="./homesvg/icon_resume.svg" alt="Icon of work experience listings as seen on my resume.">
+			<hr>
+			<h1>Resume / Contact</h1></a>
+	</div>
+
+	<!--div id="container" class="choice4">
+	<div class="textlabel bgcolor" style="background-color: var(--davys-gray)"></div>
+		<!img id="bg2" class="bg" src="./homesvg/.svg">
+		
+		<div class="backgroundtextlabel">
+			<img class="icon" src="./homesvg/icon_.svg">
+			<hr>
+			<h1>Coming Soon</h1>
+		</div>
+		
+		<a href="" class="textlabel">
+			<img class="icon" src="./homesvg/icon_.svg">
+			<hr>
+			<h1>Coming Soon</h1></a>
+	</div>
+
+	<div id="container" class="choice5">
+	<div class="textlabel bgcolor" style="background-color: var(--davys-gray)"></div>
+		<!img id="bg2" class="bg" src="./homesvg/.svg">
+		
+		<div class="backgroundtextlabel">
+			<img class="icon" src="./homesvg/icon_.svg">
+			<hr>
+			<h1>Coming Soon</h1>
+		</div>
+		
+		<a href="" class="textlabel">
+			<img class="icon" src="./homesvg/icon_.svg">
+			<hr>
+			<h1>Coming Soon</h1></a>
+	</div-->
+	
+</div>
+</div>
+
+<p id="warntext">Site is under construction. None of this is ready yet.</p>
+<!--p style="opacity: 50%;">More updates to come!</p>
+<br><br><br-->
+<p id="homebottomtext">All content from this website is ©Bea WhateverMyLastNameIs 2026. All Rights Reserved. For use with permission only.</p>
+
+</body>
+</html>
