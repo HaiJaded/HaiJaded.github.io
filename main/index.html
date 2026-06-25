@@ -12,13 +12,13 @@
 </head>
 <body onload="loaddata('0')", onhashchange="loadfromhash()"> <!--The number is the Subsheet ID-->
 
-<dialog id="infobox">
+<dialog id="infobox" onclick="closeit()">
 	<span class="starcorners"></span>
 	<span class="starcorners"></span>
 	<img id="media" src="">
 	<img class="glam" role="decorative" src="../glam.jpg">
 	<h3 id="title">Loading...</h3>
-	<p id="desc"></p>
+	<p id="desc" hidden></p>
 	
 	<div id="closeXholder">
 		<a href="javascript:;" class="closeX" id="closeX" onclick="closeit()"><h1>X</h1></a>
@@ -27,17 +27,43 @@
 	</div>
 </dialog>
 
-<div id="flexcontent">
-	<div id="introtext">
-		<h1>Cooking</h1><hr>
-		<p>Intro text</p>
-	</div>
-	<div id="gallery" style="max-width: 1200px">
-		<span>
-		<h1 id="loading">Loading...<noscript>Failed!</noscript></h1>
-		<noscript><h1>This page needs Javascript<br>enabled to function properly.</h1></noscript>
-		</span>
-	</div>
+<div id="splitemup">
+	<nav>
+		<div></div>
+		<a id="current" class="bullet" href="javascript:;" onclick="swapitall(this)">
+			<svg class="menudiamond" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+			  <path class="outer" d="M75,14.14l60.86,60.86-60.86,60.86L14.14,75,75,14.14M75,0L0,75l75,75,75-75L75,0h0Z"/>
+			  <path class="inner" d="M 75 125 L 25 75 L 75 25 L 125 75 Z"/>
+			</svg>
+			Cooking
+		</a>
+		<a class="bullet" href="javascript:;" onclick="swapitall(this)">
+			<svg class="menudiamond" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+			  <path class="outer" d="M75,14.14l60.86,60.86-60.86,60.86L14.14,75,75,14.14M75,0L0,75l75,75,75-75L75,0h0Z"/>
+			  <path class="inner" d="M 75 125 L 25 75 L 75 25 L 125 75 Z"/>
+			</svg>
+			Game Projects
+		</a>
+		<a class="bullet" href="javascript:;" onclick="swapitall(this)">
+			<svg class="menudiamond" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+			  <path class="outer" d="M75,14.14l60.86,60.86-60.86,60.86L14.14,75,75,14.14M75,0L0,75l75,75,75-75L75,0h0Z"/>
+			  <path class="inner" d="M 75 125 L 25 75 L 75 25 L 125 75 Z"/>
+			</svg>
+			Resume
+		</a>
+	</nav>
+	<main id="flexcontent">
+		<div id="introtext">
+			<h1>Testing</h1><hr>
+			<p>Intro text</p>
+		</div>
+		<div id="gallery">
+			<span>
+			<h1 id="loading">Loading...<noscript>Failed!</noscript></h1>
+			<noscript><h1>This page needs Javascript<br>enabled to function properly.</h1></noscript>
+			</span>
+		</div>
+	</main>
 </div>
 
 </body>

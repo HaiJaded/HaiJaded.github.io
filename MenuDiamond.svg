@@ -1,0 +1,15 @@
+<svg class="menudiamond" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+  <defs>
+    <style>
+      .menudiamond path { fill: #fdf1b3; transition: opacity .15s, d .15s; }
+	  .menudiamond:not(#current) .outer { opacity: 0; }
+	  .menudiamond:not(#current) .inner { opacity: 0.7; }
+	  .menudiamond:hover, .menudiamond:focus {
+		.outer, .inner { opacity: 1 !important; }
+	  }
+	  #current .inner { d: path("M 75 125 L 75 75 L 75 25 L 125 75 Z"); }
+    </style>
+  </defs>
+  <path class="outer" d="M75,14.14l60.86,60.86-60.86,60.86L14.14,75,75,14.14M75,0L0,75l75,75,75-75L75,0h0Z"/>
+  <path class="inner" d="M 75 125 L 25 75 L 75 25 L 125 75 Z"/>
+</svg>

@@ -25,11 +25,16 @@ function loadfromhash() { //Performs actions based around the number of the hash
 		let gallery = document.getElementById("gallery");
 		gallery.innerHTML = "";
 		
+		const glam = document.createElement("IMG"); //Create image
+			glam.setAttribute("class", "glam");
+			glam.setAttribute("role", "decorative");
+			glam.setAttribute("src", "https://static.vecteezy.com/system/resources/previews/024/234/903/non_2x/rainbow-hologram-gradient-background-luxury-trendy-tender-pearlescent-glam-overlay-rainbow-holographic-princess-fairytale-cute-girlie-texture-unicorn-fairy-tale-neon-hologram-gradient-free-vector.jpg");
+		
 		for (let i = 0; i <= (data.length - 1); i++) { //Check if the div styling is correct.
 			let newdiv = document.createElement("a"); //Create div
 			newdiv.setAttribute("id", "divnum" + i); //ID the div
 			newdiv.setAttribute("class", "itemtile"); //Class the div
-			newdiv.setAttribute("value", data[i].Genre);
+			//newdiv.setAttribute("value", data[i].Genre);
 			//newdiv.setAttribute("onclick", "makehash('" + data[i].Permahash + "')"); //Whole div makes clickable hash
 			newdiv.setAttribute("href", "#" + data[i].Permahash);
 			let imgG = document.createElement("IMG"); //Create image
@@ -38,7 +43,7 @@ function loadfromhash() { //Performs actions based around the number of the hash
 			//imgG.setAttribute("src", data[i].Thumb); 
 			//Set thumbnail based on which page we're on:
 			/*Photography:*/ if (whichpage == '0') { imgG.setAttribute("src", "https://i.imgur.com/" + data[i].URL + "_d.webp?maxwidth=350"); }
-			/*Videos:*/ else if (whichpage == '1188620392') { imgG.setAttribute("src", "https://i.ytimg.com/vi_webp/" + data[i].URL + "/hqdefault.webp"); }
+			///*Videos:*/ else if (whichpage == '1188620392') { imgG.setAttribute("src", "https://i.ytimg.com/vi_webp/" + data[i].URL + "/hqdefault.webp"); }
 			
 			let textG = document.createElement("p"); //Create text
 			textG.setAttribute("class", "childtext"); //Class the text
@@ -46,6 +51,7 @@ function loadfromhash() { //Performs actions based around the number of the hash
 			
 			gallery.appendChild(newdiv);
 			newdiv.appendChild(imgG);
+			newdiv.appendChild(glam);
 			newdiv.appendChild(textG);
 		}
 		filled = 1;
