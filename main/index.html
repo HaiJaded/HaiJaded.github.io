@@ -10,20 +10,20 @@
   <script src="../main.js?v=1.0"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
 </head>
-<body onload="loaddata('0')", onhashchange="loadfromhash()"> <!--The number is the Subsheet ID-->
+<body onload="loaddata('0')" onhashchange="loadfromhash()"> <!--The number is the Subsheet ID-->
 
 <dialog id="infobox" onclick="closeit()">
 	<span class="starcorners"></span>
 	<span class="starcorners"></span>
-	<img id="media" src="">
+	<img id="media" src="" onload="fadebox()">
 	<img class="glam" role="decorative" src="../glam.jpg">
 	<h3 id="title">Loading...</h3>
 	<p id="desc" hidden></p>
 	
 	<div id="closeXholder">
-		<a href="javascript:;" class="closeX" id="closeX" onclick="closeit()"><h1>X</h1></a>
-		<a href="javascript:;" class="closeX" id="leftbutton" onclick="nextprev(0)"><img src="../icon_arrow.png" alt="Previous entry" style="rotate: 180deg"></a>
-		<a href="javascript:;" class="closeX" id="rightbutton" onclick="nextprev(1)"><img src="../icon_arrow.png" alt="Next entry"></a>
+		<a href="javascript:;" class="closeX" id="closeX" onclick="closeit(); event.stopPropagation()"><h1>X</h1></a>
+		<a href="javascript:;" class="closeX" id="leftbutton" onclick="nextprev(0); event.stopPropagation()"><img src="../icon_arrow.png" alt="Previous entry" style="rotate: 180deg"></a>
+		<a href="javascript:;" class="closeX" id="rightbutton" onclick="nextprev(1); event.stopPropagation()"><img src="../icon_arrow.png" alt="Next entry"></a>
 	</div>
 </dialog>
 

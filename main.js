@@ -42,7 +42,7 @@ function loadfromhash() { //Performs actions based around the number of the hash
 			imgG.setAttribute("title", data[i].Title); //Tooltip
 			//imgG.setAttribute("src", data[i].Thumb); 
 			//Set thumbnail based on which page we're on:
-			/*Photography:*/ if (whichpage == '0') { imgG.setAttribute("src", "https://i.imgur.com/" + data[i].URL + "_d.webp?maxwidth=350"); }
+			/*Photography:*/ if (whichpage == '0') { imgG.src = "https://i.imgur.com/" + data[i].URL + "_d.webp?maxwidth=350"; }
 			///*Videos:*/ else if (whichpage == '1188620392') { imgG.setAttribute("src", "https://i.ytimg.com/vi_webp/" + data[i].URL + "/hqdefault.webp"); }
 			
 			let textG = document.createElement("p"); //Create text
@@ -59,18 +59,35 @@ function loadfromhash() { //Performs actions based around the number of the hash
 	//The above code populates the main page with the thumbnail images from the TSV if they haven't been loaded already. It even creates the HTML elements as well!
 	//Infobox populating code below:
 	if (location.hash != "") { // Removes error message on blank initial load.
-	let media = document.getElementById("media")
-	media.src = ""; //Quickly clear the last thing before it slides in.
-	document.getElementById("title").innerHTML = (data[currentrow].Title);
-	document.getElementById("desc").innerHTML = (data[currentrow].Info);
-	//media.src = data[currentrow].URL; 
-	//Set content based on which page we're on:
-	/*Photography:*/ if (whichpage == '0') { media.src = ("https://i.imgur.com/" + data[currentrow].URL + ".jpg"); }
-	/*Videos:*/ else if (whichpage == '1188620392') { media.src = ("https://www.youtube.com/embed/" + data[currentrow].URL); }
-	
-	moveit();
-	hidenavbuttons();
+		let media = document.getElementById("media");
+		
+		//Quickly clear the last thing before it slides in:
+		media.src = "";
+		document.querySelector("#infobox").removeAttribute("data-loaded");
+		
+		document.getElementById("title").innerHTML = (data[currentrow].Title);
+		document.getElementById("desc").innerHTML = (data[currentrow].Info);
+		
+		//Set content based on which page we're on:
+		/*Photography:*/
+		if (whichpage == '0') {
+			//Set to thumb, then set the sizing based on img size:
+			//media.src = "https://i.imgur.com/" + data[currentrow].URL + "_d.webp?maxwidth=350";
+			//media.style.width = "350px";
+			//media.style.height = "350px";
+			//media.style.height = document.querySelectorAll(".itemtile > img:first-of-type")[parsin].naturalHeight;
+			//Set to actual image:
+			media.src = "https://i.imgur.com/" + data[currentrow].URL + ".jpg";
+		}
+		///*Videos:*/ else if (whichpage == '1188620392') { media.src = ("https://www.youtube.com/embed/" + data[currentrow].URL); }
+		
+		moveit();
+		hidenavbuttons();
 	}
+}
+
+function fadebox() {
+	document.querySelector("#infobox").setAttribute("data-loaded", "1");
 }
 
 document.addEventListener('keydown', function(event) {
@@ -132,13 +149,4 @@ function moveitout() {
 function closeit() {
 	history.pushState("", document.title, window.location.pathname + window.location.search); //Removes the hash while maintaining stuff like search parameters. Just in case I add search functionality in the future.
 	moveitout();
-	galleryclose();
-}
-
-function galleryclose() {
-	let grayback = document.getElementById("grayback");
-	let closeX2 = document.getElementById("closeX2");
-	grayback.style.display = "none";
-	grayback.innerHTML = ("<div id='closeX2' onclick='closeit()'><h1>X</h1></div>");
-	closeX2.style.display = "none";
 }
