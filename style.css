@@ -23,14 +23,15 @@ a, p, h1, h3 { font-family: HYWenHei, serif; color: #e7e1d5; font-weight: normal
 
 body {
 	margin: 0;
-	background: url(BG.jpg) center / cover, #003333;
+	/*background: url(BGgradient.jpg) center / cover, #003333;*/
+	background: white;
 }
 
 .itemtile {
 	width: 250px;
 	height: 280px;
-	background: linear-gradient(transparent 49%, #e7e1d5 51%);
-	border-radius: 15px;
+	background: linear-gradient(transparent 49%, #fff9e0 51%);
+	border-radius: 5px;
 	overflow: hidden;
 	box-shadow: 0 0 12px 2px #0009;
 	position: relative;
@@ -41,11 +42,11 @@ body {
 	height: 225px;
 	border: none;
 	object-fit: cover;
-	background: darkblue;
-	border-bottom-right-radius: 20%;
+	background: #222;
+	border-bottom-right-radius: 10%;
 }
 
-.itemtile .glam { backdrop-filter: blur(.5px); }
+/*.itemtile .glam { backdrop-filter: blur(.5px); }*/
 
 .childtext {
 	width: 100%;
@@ -56,6 +57,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	text-wrap: balance;
 }
 
 #infobox {
@@ -84,10 +86,11 @@ body {
 	opacity: 0.35;
 	mix-blend-mode: multiply;
 	width: 100%;
-	height: 99%;
+	height: 100%;
 	max-height: 90dvh;
 	border-radius: 15px;
 	pointer-events: none;
+	mask: linear-gradient(black 90%, transparent 99%); /* Prevents the glam layer from visually overextending on certain screen sizes. */
 }
 @supports not (mix-blend-mode: multiply) {
 	.glam {
@@ -98,7 +101,9 @@ body {
 
 #media {
 	max-width: 100%;
-	max-height: 82dvh;
+	max-height: 90dvh;
+	min-width: 200px;
+	min-height: 200px;
 	border-radius: 15px;
 	background: #0009;
 	filter: saturate(1.15);
@@ -107,14 +112,17 @@ body {
 
 #title {
 	position: absolute;
-	color: white;
-	text-transform: capitalize;
-	text-wrap: balance;
-	width: 100%;
+	color: black;
+	font-style: italic;
+	text-wrap: pretty;
+	width: calc(100% - 35px);
 	margin: 0;
-	text-align: center;
-	font-size: 21px;
-	text-shadow: 0 0 10px black;
+	top: 0;
+	left: 0;
+	background: linear-gradient(150deg, #FFEE 25%, transparent 90%);
+	font-size: 16px;
+	text-shadow: 0 0 5px white;
+	padding: 1px 15px 1px 20px;
 }
 
 .starcorners {
@@ -196,10 +204,10 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	filter: drop-shadow(0 0 5px black);
+	filter: drop-shadow(0 0 5px #e5a961);
 }
 
-#closeXholder > a { transition: scale .35s; }
+#closeXholder > a { transition: scale .35s; padding: 10px; }
 #closeXholder > a:hover, #closeholder > a:focus { scale: 1.15; }
 
 #closeX {
@@ -208,20 +216,25 @@ body {
 	right: 5px;
 	width: 80px;
 	height: 80px;
+	padding: 0 !important;
 	text-align: center;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	-webkit-text-stroke: 3px black;
-	paint-order: stroke;
+	/*-webkit-text-stroke: 3px black;
+	paint-order: stroke;*/
 }
-#closeX > h1 { color: white; }
+#closeX > h1 {
+	color: #fdf1b3;
+	text-shadow: 0 0 3px #e5a961;
+}
 
 #splitemup {
 	display: flex;
-	background: #00333399;
-	backdrop-filter: blur(5px);
+	/*background: #00333399;
+	backdrop-filter: blur(5px);*/
+	background: #20252899;
 }
 
 nav {
@@ -233,7 +246,7 @@ nav {
 	padding: 40px 40px 40px 35px;
 	height: calc(100dvh - 80px);
 	
-	background: linear-gradient(#3d476d99 35%, #a5b3e999 100%);
+	background: linear-gradient(#8c846a 45%, #fff9e0 120%);
 	box-shadow: 0 -3px 3px 3px #3336;
 	/*backdrop-filter: blur(5px);*/
 }
@@ -244,9 +257,10 @@ nav:after {
 	right: 0;
 	width: 1px;
 	height: 100%;
-	background: linear-gradient(#c7c79b, transparent);
+	background: linear-gradient(#ffe325, transparent);
 }
 .bullet {
+	/*color: #2f2d2b;*/
 	display: flex;
 	gap: 10px;
 	font-size: 21px;
@@ -264,7 +278,7 @@ nav:after {
 	margin-right: -5px;
 	.outer, .inner { opacity: 1 !important; }
 }
-#current { filter: drop-shadow(0 1px 5px #FFF9) drop-shadow(0 1px 5px #0003); }
+#current { filter: brightness(2) drop-shadow(0 1px 5px #FFF9) drop-shadow(0 1px 5px #0003); }
 #current .inner { d: path("M 75 125 L 75 75 L 75 25 L 125 75 Z"); }
 /*#current path { fill: white; }*/
 
@@ -274,4 +288,22 @@ nav:after {
 	margin: 0 auto;
 	overflow-y: auto;
 	height: 100dvh;
+}
+
+@media (max-width: 843px) {
+	#splitemup { flex-direction: column; }
+	nav { height: unset; padding: 10px 40px 20px 35px; }
+	#flexcontent { height: unset; }
+	.itemtile { width: 220px; height: 250px; }
+	.itemtile img { height: 205px; }
+	.childtext { height: 35px; font-size: 15px; }
+	#introtext > h1 { text-align: center; text-wrap: balance; font-size: clamp(14px, 4vw, 2em); }
+	#introtext > p { text-align: center; }
+}
+
+@media (max-width: 510px) {
+	#gallery { gap: 2vw; width: calc(100% + 30px); margin-left: -15px; }
+	.itemtile { width: 48%; height: unset; aspect-ratio: 1/1.25; }
+	.itemtile img { height: unset; aspect-ratio: 1/1; }
+	.childtext { height: 8.5vw; font-size: 12px; }
 }

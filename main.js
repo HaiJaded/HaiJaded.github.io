@@ -51,7 +51,7 @@ function loadfromhash() { //Performs actions based around the number of the hash
 			
 			gallery.appendChild(newdiv);
 			newdiv.appendChild(imgG);
-			newdiv.appendChild(glam);
+			newdiv.appendChild(glam.cloneNode(true));
 			newdiv.appendChild(textG);
 		}
 		filled = 1;
@@ -71,18 +71,14 @@ function loadfromhash() { //Performs actions based around the number of the hash
 		//Set content based on which page we're on:
 		/*Photography:*/
 		if (whichpage == '0') {
-			//Set to thumb, then set the sizing based on img size:
-			//media.src = "https://i.imgur.com/" + data[currentrow].URL + "_d.webp?maxwidth=350";
-			//media.style.width = "350px";
-			//media.style.height = "350px";
-			//media.style.height = document.querySelectorAll(".itemtile > img:first-of-type")[parsin].naturalHeight;
 			//Set to actual image:
 			media.src = "https://i.imgur.com/" + data[currentrow].URL + ".jpg";
+			media.alt = data[currentrow].Title;
 		}
 		///*Videos:*/ else if (whichpage == '1188620392') { media.src = ("https://www.youtube.com/embed/" + data[currentrow].URL); }
 		
 		moveit();
-		hidenavbuttons();
+		//hidenavbuttons();
 	}
 }
 
@@ -104,11 +100,25 @@ document.addEventListener('keydown', function(event) {
 function nextprev(direction) {
 	let gallery = document.getElementById("gallery");
 	
+	// Looking right:
+	if (direction) {
+		currentrow++;
+		if (currentrow >= data.length) { currentrow = 0; }
+		makehash(data[currentrow].Permahash);
+	}
+	// Looking left:
+	else {
+		currentrow--;
+		if (currentrow < 0) { currentrow = data.length - 1; }
+		makehash(data[currentrow].Permahash);
+	}
+	
+	/*
 	//Looking right...
 	if (direction == 1 && currentrow < data.length - 1) {
 		while (currentrow < data.length) {
 			 //Looks ahead to see if the next element is hidden:
-			if (gallery.children[currentrow + 1].classList[0] == "hidden") { currentrow++; }
+			if (gallery.children[currentrow + 1].hidden) { currentrow++; }
 			else { makehash(data[currentrow + 1].Permahash); break; }
 		}
 	}
@@ -117,33 +127,30 @@ function nextprev(direction) {
 	else if (direction == 0 && currentrow > 0) {
 		while (currentrow > 0) {
 			 //Looks behind to see if the previous element is hidden:
-			if (gallery.children[currentrow - 1].classList[0] == "hidden") { currentrow--; }
+			if (gallery.children[currentrow - 1].hidden) { currentrow--; }
 			else { makehash(data[currentrow - 1].Permahash); break; }
 		}
 	}
+	*/
 	
-	hidenavbuttons();
+	//hidenavbuttons();
 }
 
-function hidenavbuttons() {
+// Improved arrow hiding functionality, but disabled to allow for looping around:
+/*function hidenavbuttons() {
 	if (currentrow >= data.length - 1) {
-		document.getElementById("rightbutton").setAttribute("class", "closeXhidden");
+		document.getElementById("rightbutton").hidden = true;
 	}
-	else { document.getElementById("rightbutton").setAttribute("class", "closeX"); }
+	else { document.getElementById("rightbutton").hidden = false; }
 	
 	if (currentrow <= 0) {
-		document.getElementById("leftbutton").setAttribute("class", "closeXhidden");
+		document.getElementById("leftbutton").hidden = true;
 	}
-	else { document.getElementById("leftbutton").setAttribute("class", "closeX"); }
-}
+	else { document.getElementById("leftbutton").hidden = false; }
+}*/
 
-function moveit() {
-	document.getElementById('infobox').showModal();
-}
-
-function moveitout() {
-	document.getElementById('infobox').close();
-}
+function moveit() { document.getElementById('infobox').showModal(); }
+function moveitout() { document.getElementById('infobox').close(); }
 
 //Clicking off the info box removes the hash.
 function closeit() {
