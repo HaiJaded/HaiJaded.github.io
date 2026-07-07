@@ -2,11 +2,13 @@ let currentrow = 0; //Set to a number to test that row from the TSV.
 let filled = 0; //For filling the gallery images only once.
 let data;
 let whichpage;
+let resume = 0;
 
 function loaddata(subsheetID) {
 	d3.tsv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRtmdbRQs4nYQ7QHam4WzFWlbU0gOAs-w8-2DMjIvOvc8ituHqsE044CEapZxtOStNMxvy_89UPCovf/pub?gid=" + subsheetID + "&single=true&output=tsv").then(copythisdata => {
 		data = copythisdata;
 		whichpage = subsheetID;
+		filled = 0;
 		loadfromhash();
 	});
 }
@@ -21,7 +23,7 @@ function loadfromhash() { //Performs actions based around the number of the hash
 	while (parsin <= (data.length - 1) && (data[parsin].Permahash != hashname)) { parsin++; }
 	currentrow = parsin;
 
-	if( filled == 0 ) { //Populates the main gallery on the initial run.
+	if (!filled) { //Populates the main gallery on the initial run.
 		let gallery = document.getElementById("gallery");
 		gallery.innerHTML = "";
 		
@@ -59,6 +61,7 @@ function loadfromhash() { //Performs actions based around the number of the hash
 	//The above code populates the main page with the thumbnail images from the TSV if they haven't been loaded already. It even creates the HTML elements as well!
 	//Infobox populating code below:
 	if (location.hash != "") { // Removes error message on blank initial load.
+		resume = 0;
 		let media = document.getElementById("media");
 		
 		//Quickly clear the last thing before it slides in:
@@ -88,7 +91,7 @@ function fadebox() {
 
 document.addEventListener('keydown', function(event) {
 	let info = document.getElementById('infobox');
-	if (info.open) {
+	if (info.open && !resume) {
 		const key = event.key;
 		switch (event.key) {
 			case "ArrowLeft": nextprev(0); break;
@@ -156,4 +159,26 @@ function moveitout() { document.getElementById('infobox').close(); }
 function closeit() {
 	history.pushState("", document.title, window.location.pathname + window.location.search); //Removes the hash while maintaining stuff like search parameters. Just in case I add search functionality in the future.
 	moveitout();
+}
+
+function swapitall(btn) {
+	document.querySelector("#current").removeAttribute("id");
+	btn.id = "current";
+}
+
+function showresume() {
+	resume = 1;
+	let media = document.getElementById("media");
+		
+	//Quickly clear the last thing before it slides in:
+	media.src = "";
+	document.querySelector("#infobox").removeAttribute("data-loaded");
+	
+	document.getElementById("title").innerHTML = `&ZeroWidthSpace;<a href="../resume.pdf" target="_blank">Open PDF in New Tab</a>`;
+	document.getElementById("desc").innerHTML = "";
+	
+	media.src = "../resume.jpg";
+	media.alt = "Resume";
+	
+	moveit();
 }

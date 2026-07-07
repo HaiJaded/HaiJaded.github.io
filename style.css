@@ -5,6 +5,17 @@
 
 a, p, h1, h3 { font-family: HYWenHei, serif; color: #e7e1d5; font-weight: normal; text-decoration: none; }
 
+#logoholder {
+	filter: drop-shadow(0 4px 15px #0006);
+	max-width: 238px;
+	margin-left: -40px;
+}
+
+#logo {
+	width: 100%;
+	display: block;
+}
+
 #introtext {
 	margin: auto;
 	max-width: 1200px;
@@ -109,6 +120,10 @@ body {
 	filter: saturate(1.15);
 	box-shadow: 0 0 5px #99330066;
 }
+#media:has(~ #title > a) {
+	padding-top: 22px;
+	max-height: calc(90dvh - 22px);
+}
 
 #title {
 	position: absolute;
@@ -123,6 +138,17 @@ body {
 	font-size: 16px;
 	text-shadow: 0 0 5px white;
 	padding: 1px 15px 1px 20px;
+}
+#title > a {
+	color: black;
+	height: 90dvh;
+	width: 100%;
+	display: block;
+	top: 0;
+	left: 0;
+	position: absolute;
+	z-index: 3;
+	text-indent: 20px;
 }
 
 .starcorners {
@@ -243,7 +269,7 @@ nav {
 	flex-direction: column;
 	gap: 15px;
 	text-wrap: nowrap;
-	padding: 40px 40px 40px 35px;
+	padding: 30px 40px 40px 35px;
 	height: calc(100dvh - 80px);
 	
 	background: linear-gradient(#8c846a 45%, #fff9e0 120%);

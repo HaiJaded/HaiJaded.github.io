@@ -15,7 +15,7 @@
 <dialog id="infobox" onclick="closeit()">
 	<span class="starcorners"></span>
 	<span class="starcorners"></span>
-	<img id="media" src="" onload="fadebox()" alt="">
+	<img id="media" src="" onload="fadebox()" alt="" onerror="this.src = '../notfound.jpg'">
 	<img class="glam" role="decorative" src="../glam.jpg">
 	<h3 id="title">Loading...</h3>
 	<p id="desc" hidden></p>
@@ -29,22 +29,24 @@
 
 <div id="splitemup">
 	<nav>
-		<div></div>
-		<a id="current" class="bullet" href="javascript:;" onclick="swapitall(this)">
+		<a id="logoholder" href="">
+			<img id="logo" alt="Bea's Kitchen" src="../logo.png">
+		</a>
+		<a id="current" class="bullet" href="javascript:;" onclick="swapitall(this); loaddata('0')">
 			<svg class="menudiamond" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
 			  <path class="outer" d="M75,14.14l60.86,60.86-60.86,60.86L14.14,75,75,14.14M75,0L0,75l75,75,75-75L75,0h0Z"/>
 			  <path class="inner" d="M 75 125 L 25 75 L 75 25 L 125 75 Z"/>
 			</svg>
 			Cooking
 		</a>
-		<a class="bullet" href="javascript:;" onclick="swapitall(this)">
+		<a class="bullet" href="javascript:;" onclick="swapitall(this); loaddata('1188620392')">
 			<svg class="menudiamond" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
 			  <path class="outer" d="M75,14.14l60.86,60.86-60.86,60.86L14.14,75,75,14.14M75,0L0,75l75,75,75-75L75,0h0Z"/>
 			  <path class="inner" d="M 75 125 L 25 75 L 75 25 L 125 75 Z"/>
 			</svg>
 			Game Projects
 		</a>
-		<a class="bullet" href="javascript:;" onclick="swapitall(this)">
+		<a class="bullet" href="javascript:;" onclick="swapitall(this); showresume()">
 			<svg class="menudiamond" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
 			  <path class="outer" d="M75,14.14l60.86,60.86-60.86,60.86L14.14,75,75,14.14M75,0L0,75l75,75,75-75L75,0h0Z"/>
 			  <path class="inner" d="M 75 125 L 25 75 L 75 25 L 125 75 Z"/>
@@ -54,8 +56,8 @@
 	</nav>
 	<main id="flexcontent">
 		<div id="introtext">
-			<h1>A selection of my finest meals.</h1><hr>
-			<p>Our menu includes...</p>
+			<h1>My Cooking</h1><hr>
+			<p>A selection of my finest meals. Our menu includes...</p>
 		</div>
 		<div id="gallery">
 			<span>
