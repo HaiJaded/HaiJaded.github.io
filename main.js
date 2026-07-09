@@ -159,6 +159,10 @@ function moveitout() { document.getElementById('infobox').close(); }
 function closeit() {
 	history.pushState("", document.title, window.location.pathname + window.location.search); //Removes the hash while maintaining stuff like search parameters. Just in case I add search functionality in the future.
 	moveitout();
+	
+	//Reset the overlay link:
+	document.getElementById("overlaylink").href = "";
+	document.getElementById("overlaylink").hidden = true;
 }
 
 function swapitall(btn) {
@@ -174,8 +178,10 @@ function showresume() {
 	media.src = "";
 	document.querySelector("#infobox").removeAttribute("data-loaded");
 	
-	document.getElementById("title").innerHTML = `&ZeroWidthSpace;<a href="../resume.pdf" target="_blank">Open PDF in New Tab</a>`;
+	document.getElementById("title").innerHTML = `Open PDF in New Tab`;
 	document.getElementById("desc").innerHTML = "";
+	document.getElementById("overlaylink").href = `../resume.pdf`;
+	document.getElementById("overlaylink").hidden = false;
 	
 	media.src = "../resume.jpg";
 	media.alt = "Resume";
