@@ -15,13 +15,8 @@
 <dialog id="infobox" onclick="closeit()">
 	<span class="starcorners"></span>
 	<span class="starcorners"></span>
-	
-	<div id="mediaholder">
-		<img id="media" src="" onload="fadebox()" alt="" onerror="this.src = '../notfound.jpg'">
-		<img class="glam" role="decorative" src="../glam.jpg">
-		<a id="overlaylink" href="" target="_blank" onclick="event.stopPropagation()" hidden></a>
-	</div>
-	
+	<img id="media" src="" onclick="clickthelink(); event.stopPropagation()" onload="fadebox()" alt="" onerror="this.src = '../notfound.jpg'">
+	<img class="glam" role="decorative" src="../glam.jpg">
 	<h3 id="title">Loading...</h3>
 	<p id="desc" hidden></p>
 	
@@ -51,7 +46,7 @@
 			</svg>
 			Game Projects
 		</a>
-		<a class="bullet" href="javascript:;" onclick="showresume()">
+		<a class="bullet" href="javascript:;" onclick="swapitall(this); showresume()">
 			<svg class="menudiamond" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
 			  <path class="outer" d="M75,14.14l60.86,60.86-60.86,60.86L14.14,75,75,14.14M75,0L0,75l75,75,75-75L75,0h0Z"/>
 			  <path class="inner" d="M 75 125 L 25 75 L 75 25 L 125 75 Z"/>
