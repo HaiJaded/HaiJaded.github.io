@@ -1,72 +1,27 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-  <meta charset="UTF-8">
-  <title>Bea's Kitchen!</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="../favicon.ico">
-  <link rel="stylesheet" href="../style.css?v=1.0" type="text/css">
-  <!--link rel="stylesheet" href="../universal.css?v=1.0" type="text/css"-->
-  <script src="../main.js?v=1.0"></script>
-  <script src="https://d3js.org/d3.v5.min.js"></script>
+<title>Bea's Bistro</title>
+<meta http-equiv="refresh" content="0; url=http://HaiJaded.github.io/cooking"/>
+
+<meta property="og:title" content="Bea's Bistro"/>
+<meta property="og:type" content="website"/>
+<meta property="og:description" content="Here's a selection of things I've made. Please have a look!"/>
+<!--meta property="og:url" content="https://zuchr.github.io/"/>
+<meta property="og:image" content="https://zuchr.github.io/logo.png"/>
+<meta name="theme-color" content="#1DCC6D"/-->
+<!-- Include this to make the og:image larger -->
+<!--meta name="twitter:card" content="summary_large_image"/-->
+
+
+<!-- For Google Crawling -->
+<!--meta name="google-site-verification" content="CodeGoesHere"/-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body onload="loaddata('0')" onhashchange="loadfromhash()"> <!--The number is the Subsheet ID-->
-
-<dialog id="infobox" onclick="closeit()">
-	<span class="starcorners"></span>
-	<span class="starcorners"></span>
-	<img id="media" src="" onclick="clickthelink(); event.stopPropagation()" onload="fadebox()" alt="" onerror="this.src = '../notfound.jpg'">
-	<img class="glam" role="decorative" src="../glam.jpg">
-	<h3 id="title">Loading...</h3>
-	<p id="desc" hidden></p>
-	
-	<div id="closeXholder">
-		<a href="javascript:;" class="closeX" id="closeX" onclick="closeit(); event.stopPropagation()"><h1>X</h1></a>
-		<a href="javascript:;" class="closeX" id="leftbutton" onclick="nextprev(0); event.stopPropagation()"><img src="../icon_arrow_gold.png" alt="Previous entry" style="rotate: 180deg"></a>
-		<a href="javascript:;" class="closeX" id="rightbutton" onclick="nextprev(1); event.stopPropagation()"><img src="../icon_arrow_gold.png" alt="Next entry"></a>
-	</div>
-</dialog>
-
-<div id="splitemup">
-	<nav>
-		<a id="logoholder" href="">
-			<img id="logo" alt="Bea's Kitchen" src="../logo.png">
-		</a>
-		<a id="current" class="bullet" href="javascript:;" onclick="swapitall(this); loaddata('0')">
-			<svg class="menudiamond" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
-			  <path class="outer" d="M75,14.14l60.86,60.86-60.86,60.86L14.14,75,75,14.14M75,0L0,75l75,75,75-75L75,0h0Z"/>
-			  <path class="inner" d="M 75 125 L 25 75 L 75 25 L 125 75 Z"/>
-			</svg>
-			Cooking
-		</a>
-		<a class="bullet" href="javascript:;" onclick="swapitall(this); loaddata('1188620392')">
-			<svg class="menudiamond" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
-			  <path class="outer" d="M75,14.14l60.86,60.86-60.86,60.86L14.14,75,75,14.14M75,0L0,75l75,75,75-75L75,0h0Z"/>
-			  <path class="inner" d="M 75 125 L 25 75 L 75 25 L 125 75 Z"/>
-			</svg>
-			Game Projects
-		</a>
-		<a class="bullet" href="javascript:;" onclick="swapitall(this); showresume()">
-			<svg class="menudiamond" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
-			  <path class="outer" d="M75,14.14l60.86,60.86-60.86,60.86L14.14,75,75,14.14M75,0L0,75l75,75,75-75L75,0h0Z"/>
-			  <path class="inner" d="M 75 125 L 25 75 L 75 25 L 125 75 Z"/>
-			</svg>
-			Resume
-		</a>
-	</nav>
-	<main id="flexcontent">
-		<div id="introtext">
-			<h1>My Cooking</h1><hr>
-			<p>A selection of my finest meals. Our menu includes...</p>
-		</div>
-		<div id="gallery">
-			<span>
-			<h1 id="loading">Loading...<noscript>Failed!</noscript></h1>
-			<noscript><h1>This page needs Javascript<br>enabled to function properly.</h1></noscript>
-			</span>
-		</div>
-	</main>
-</div>
-
+<body>
+Redirecting to gallery...
+<noscript><h3>Hey, this site isn't gonna work without Javascript! You may want to switch to a different browser if you can.</h3></noscript>
 </body>
 </html>

@@ -9,6 +9,7 @@ function loaddata(subsheetID) {
 		data = copythisdata;
 		whichpage = subsheetID;
 		filled = 0;
+		currentrow = 0
 		loadfromhash();
 	});
 }
@@ -43,8 +44,14 @@ function loadfromhash() { //Performs actions based around the number of the hash
 			imgG.setAttribute("alt", data[i].Title);
 			imgG.setAttribute("title", data[i].Title); //Tooltip
 			//imgG.setAttribute("src", data[i].Thumb); 
+			
+			let thumby = data[i].URL;
+			//Set the img to use the imgur link if that's what it's entered as (default action):
+			if (!thumby.startsWith("http")) { thumby = "https://i.imgur.com/" + thumby + "_d.webp?maxwidth=350"; }
+			
+			imgG.src = thumby;
 			//Set thumbnail based on which page we're on:
-			/*Photography:*/ if (whichpage == '0') { imgG.src = "https://i.imgur.com/" + data[i].URL + "_d.webp?maxwidth=350"; }
+			///*Photography:*/ if (whichpage == '0') { imgG.src = thumby; }
 			///*Videos:*/ else if (whichpage == '1188620392') { imgG.setAttribute("src", "https://i.ytimg.com/vi_webp/" + data[i].URL + "/hqdefault.webp"); }
 			
 			let textG = document.createElement("p"); //Create text
@@ -77,13 +84,18 @@ function loadfromhash() { //Performs actions based around the number of the hash
 		document.getElementById("title").innerHTML = boxtitle;
 		document.getElementById("desc").innerHTML = data[currentrow].Info;
 		
+		
+		let bigimage = data[currentrow].URL;
+		//Set the img to use the imgur link if that's what it's entered as (default action):
+		if (!bigimage.startsWith("http")) { bigimage = "https://i.imgur.com/" + bigimage + ".jpg"; }
+		
 		//Set content based on which page we're on:
 		/*Photography:*/
-		if (whichpage == '0') {
+		//if (whichpage == '0') {
 			//Set to actual image:
-			media.src = "https://i.imgur.com/" + data[currentrow].URL + ".jpg";
+			media.src = bigimage;
 			media.alt = data[currentrow].Title;
-		}
+		//}
 		///*Videos:*/ else if (whichpage == '1188620392') { media.src = ("https://www.youtube.com/embed/" + data[currentrow].URL); }
 		
 		moveit();
@@ -167,9 +179,28 @@ function closeit() {
 	moveitout();
 }
 
-function swapitall(btn) {
+function swapitall(btn, path) {
 	document.querySelector("#current").removeAttribute("id");
 	btn.id = "current";
+	
+	history.replaceState("", "", (window.location.origin + "/" + path))
+	
+	let fc = document.querySelector("#flexcontent");
+	fc.style.opacity = 0;
+	
+	setTimeout(() => {
+		fc.removeAttribute("style");
+		replacecontent(path);
+	}, 1000);
+}
+
+function replacecontent(path) {
+	if (path == 'cooking') {
+		document.querySelector("#introtext").innerHTML = "<h1>My Cooking</h1><hr><p>A selection of my finest meals. Our menu includes...</p>";
+	}
+	else if (path == 'projects') {
+		document.querySelector("#introtext").innerHTML = "<h1>Game Projects</h1><hr><p>Notable work from my solo game dev projects.</p>";
+	}
 }
 
 function showresume() {
