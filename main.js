@@ -60,7 +60,7 @@ function loadfromhash() { //Performs actions based around the number of the hash
 			
 			gallery.appendChild(newdiv);
 			newdiv.appendChild(imgG);
-			newdiv.appendChild(glam.cloneNode(true));
+			if (!data[i].HideFilter) { newdiv.appendChild(glam.cloneNode(true)); }
 			newdiv.appendChild(textG);
 		}
 		filled = 1;
@@ -73,6 +73,7 @@ function loadfromhash() { //Performs actions based around the number of the hash
 		
 		//Quickly clear the last thing before it slides in:
 		media.src = "";
+		media.setAttribute("data-noglam", "1");
 		document.querySelector("#infobox").removeAttribute("data-loaded");
 		
 		let boxtitle = data[currentrow].Title;
@@ -88,6 +89,11 @@ function loadfromhash() { //Performs actions based around the number of the hash
 		let bigimage = data[currentrow].URL;
 		//Set the img to use the imgur link if that's what it's entered as (default action):
 		if (!bigimage.startsWith("http")) { bigimage = "https://i.imgur.com/" + bigimage + ".jpg"; }
+		
+		//Show the glam filter if not specified on the sheet, and only on the cooking page:
+		if (!data[i].HideFilter && whichpage == '0') {
+			media.removeAttribute("data-noglam");
+		}
 		
 		//Set content based on which page we're on:
 		/*Photography:*/
@@ -209,6 +215,7 @@ function showresume() {
 		
 	//Quickly clear the last thing before it slides in:
 	media.src = "";
+	media.setAttribute("data-noglam", "1");
 	document.querySelector("#infobox").removeAttribute("data-loaded");
 	
 	document.getElementById("title").innerHTML = `&ZeroWidthSpace;<a id="outlink" href="../Bea Tran Resume.pdf" target="_blank">Open PDF in New Tab</a>`;
