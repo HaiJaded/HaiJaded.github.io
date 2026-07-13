@@ -211,10 +211,10 @@ function showresume() {
 	media.src = "";
 	document.querySelector("#infobox").removeAttribute("data-loaded");
 	
-	document.getElementById("title").innerHTML = `&ZeroWidthSpace;<a id="outlink" href="../resume.pdf" target="_blank">Open PDF in New Tab</a>`;
+	document.getElementById("title").innerHTML = `&ZeroWidthSpace;<a id="outlink" href="../Bea Tran Resume.pdf" target="_blank">Open PDF in New Tab</a>`;
 	document.getElementById("desc").innerHTML = "";
 	
-	media.src = "../resume.jpg";
+	media.src = "../Bea Tran Resume.jpg";
 	media.alt = "Resume";
 	
 	moveit();
