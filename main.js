@@ -91,7 +91,7 @@ function loadfromhash() { //Performs actions based around the number of the hash
 		if (!bigimage.startsWith("http")) { bigimage = "https://i.imgur.com/" + bigimage + ".jpg"; }
 		
 		//Show the glam filter if not specified on the sheet, and only on the cooking page:
-		if (!data[i].HideFilter && whichpage == '0') {
+		if (!data[currentrow].HideFilter && whichpage == '0') {
 			media.removeAttribute("data-noglam");
 		}
 		
